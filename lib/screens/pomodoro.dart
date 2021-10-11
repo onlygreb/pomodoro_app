@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pomodoro_app/components/cronometro.dart';
-import 'package:pomodoro_app/components/entrada_tempo.dart';
+import 'package:pomodoro_app/components/timer.dart';
+import 'package:pomodoro_app/components/time_input.dart';
 import 'package:pomodoro_app/store/pomodoro.store.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +17,7 @@ class Pomodoro extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Expanded(
-            child: Cronometro(),
+            child: PomodoroTimer(),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 40),
@@ -25,25 +25,25 @@ class Pomodoro extends StatelessWidget {
               builder: (_) => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  EntradaTempo(
-                    titulo: 'Trabalho',
-                    valor: store.tempoTrabalho,
-                    inc: store.iniciado && store.estaTrabalhando()
+                  TimeInput(
+                    titulo: 'Work',
+                    valor: store.workTime,
+                    inc: store.started && store.isWorking()
                         ? null
-                        : store.incrementarTempoTrabalho,
-                    dec: store.iniciado && store.estaTrabalhando()
+                        : store.incrementWorkTime,
+                    dec: store.started && store.isWorking()
                         ? null
-                        : store.decrementarTempoTrabalho,
+                        : store.decrementWorkTime,
                   ),
-                  EntradaTempo(
-                    titulo: 'Descanso',
-                    valor: store.tempoDescanso,
-                    inc: store.iniciado && store.estaDescansando()
+                  TimeInput(
+                    titulo: 'Rest',
+                    valor: store.restTime,
+                    inc: store.started && store.isResting()
                         ? null
-                        : store.incrementarTempoDescanso,
-                    dec: store.iniciado && store.estaDescansando()
+                        : store.incrementRestTime,
+                    dec: store.started && store.isResting()
                         ? null
-                        : store.decrementarTempoDescanso,
+                        : store.decrementRestTime,
                   ),
                 ],
               ),

@@ -6,109 +6,109 @@ part 'pomodoro.store.g.dart';
 
 class PomodoroStore = _PomodoroStore with _$PomodoroStore;
 
-enum TipoIntervalo { TRABALHO, DESCANSO }
+enum BreakType { WORK, REST }
 
 abstract class _PomodoroStore with Store {
   @observable
-  bool iniciado = false;
+  bool started = false;
 
   @observable
-  int minutos = 2;
+  int minutes = 2;
 
   @observable
-  int segundos = 0;
+  int seconds = 0;
 
   @observable
-  int tempoTrabalho = 2;
+  int workTime = 2;
 
   @observable
-  int tempoDescanso = 1;
+  int restTime = 1;
 
   @observable
-  TipoIntervalo tipoIntervalo = TipoIntervalo.TRABALHO;
+  BreakType breakType = BreakType.WORK;
 
-  Timer? cronometro;
+  Timer? timer;
 
   @action
-  void iniciar() {
-    iniciado = true;
-    cronometro = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
-      if (minutos == 0 && segundos == 0) {
-        _trocarTipoIntervalo();
-      } else if (segundos == 0) {
-        segundos = 59;
-        minutos--;
+  void start() {
+    started = true;
+    timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
+      if (minutes == 0 && seconds == 0) {
+        _changeBreakType();
+      } else if (seconds == 0) {
+        seconds = 59;
+        minutes--;
       } else {
-        segundos--;
+        seconds--;
       }
     });
   }
 
   @action
-  void parar() {
-    iniciado = false;
-    cronometro?.cancel();
+  void stop() {
+    started = false;
+    timer?.cancel();
   }
 
   @action
-  void reiniciar() {
-    parar();
-    minutos = estaTrabalhando() ? tempoTrabalho : tempoDescanso;
-    segundos = 0;
+  void restart() {
+    stop();
+    minutes = isWorking() ? workTime : restTime;
+    seconds = 0;
   }
 
   @action
-  void incrementarTempoTrabalho() {
-    tempoTrabalho++;
-    if (estaTrabalhando()) {
-      reiniciar();
+  void incrementWorkTime() {
+    workTime++;
+    if (isWorking()) {
+      restart();
     }
   }
 
   @action
-  void decrementarTempoTrabalho() {
-    if (tempoTrabalho > 1) {
-      tempoTrabalho--;
-      if (estaTrabalhando()) {
-        reiniciar();
+  void decrementWorkTime() {
+    if (workTime > 1) {
+      workTime--;
+      if (isWorking()) {
+        restart();
       }
     }
   }
 
   @action
-  void incrementarTempoDescanso() {
-    tempoDescanso++;
-    if (estaDescansando()) {
-      reiniciar();
+  void incrementRestTime() {
+    restTime++;
+    if (isResting()) {
+      restart();
     }
   }
 
   @action
-  void decrementarTempoDescanso() {
-    if (tempoDescanso > 1) {
-      tempoDescanso--;
-      if (estaDescansando()) {
-        reiniciar();
+  void decrementRestTime() {
+    if (restTime > 1) {
+      restTime--;
+      if (isResting()) {
+        restart();
       }
     }
   }
 
-  bool estaTrabalhando() {
-    return tipoIntervalo == TipoIntervalo.TRABALHO;
+  bool isWorking() {
+    return breakType == BreakType.WORK;
   }
 
-  bool estaDescansando() {
-    return tipoIntervalo == TipoIntervalo.DESCANSO;
+  bool isResting() {
+    return breakType == BreakType.REST;
   }
 
-  void _trocarTipoIntervalo() {
-    if (estaTrabalhando()) {
-      tipoIntervalo = TipoIntervalo.DESCANSO;
-      minutos = tempoDescanso;
+  void _changeBreakType() {
+    if (isWorking()) {
+      breakType = BreakType.REST;
+      minutes = restTime;
     } else {
-      tipoIntervalo = TipoIntervalo.TRABALHO;
-      minutos = tempoTrabalho;
+      breakType = BreakType.WORK;
+      minutes = workTime;
     }
-    segundos = 0;
+    seconds = 0;
   }
 }

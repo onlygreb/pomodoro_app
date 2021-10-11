@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CronometroBotao extends StatelessWidget {
+class TimerButton extends StatelessWidget {
   final String texto;
   final IconData icone;
   final void Function()? click;
 
-  const CronometroBotao({
+  const TimerButton({
     Key? key,
     required this.texto,
     required this.icone,

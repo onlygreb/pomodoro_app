@@ -9,93 +9,93 @@ part of 'pomodoro.store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PomodoroStore on _PomodoroStore, Store {
-  final _$iniciadoAtom = Atom(name: '_PomodoroStore.iniciado');
+  final _$startedAtom = Atom(name: '_PomodoroStore.started');
 
   @override
-  bool get iniciado {
-    _$iniciadoAtom.reportRead();
-    return super.iniciado;
+  bool get started {
+    _$startedAtom.reportRead();
+    return super.started;
   }
 
   @override
-  set iniciado(bool value) {
-    _$iniciadoAtom.reportWrite(value, super.iniciado, () {
-      super.iniciado = value;
+  set started(bool value) {
+    _$startedAtom.reportWrite(value, super.started, () {
+      super.started = value;
     });
   }
 
-  final _$minutosAtom = Atom(name: '_PomodoroStore.minutos');
+  final _$minutesAtom = Atom(name: '_PomodoroStore.minutes');
 
   @override
-  int get minutos {
-    _$minutosAtom.reportRead();
-    return super.minutos;
+  int get minutes {
+    _$minutesAtom.reportRead();
+    return super.minutes;
   }
 
   @override
-  set minutos(int value) {
-    _$minutosAtom.reportWrite(value, super.minutos, () {
-      super.minutos = value;
+  set minutes(int value) {
+    _$minutesAtom.reportWrite(value, super.minutes, () {
+      super.minutes = value;
     });
   }
 
-  final _$segundosAtom = Atom(name: '_PomodoroStore.segundos');
+  final _$secondsAtom = Atom(name: '_PomodoroStore.seconds');
 
   @override
-  int get segundos {
-    _$segundosAtom.reportRead();
-    return super.segundos;
+  int get seconds {
+    _$secondsAtom.reportRead();
+    return super.seconds;
   }
 
   @override
-  set segundos(int value) {
-    _$segundosAtom.reportWrite(value, super.segundos, () {
-      super.segundos = value;
+  set seconds(int value) {
+    _$secondsAtom.reportWrite(value, super.seconds, () {
+      super.seconds = value;
     });
   }
 
-  final _$tempoTrabalhoAtom = Atom(name: '_PomodoroStore.tempoTrabalho');
+  final _$workTimeAtom = Atom(name: '_PomodoroStore.workTime');
 
   @override
-  int get tempoTrabalho {
-    _$tempoTrabalhoAtom.reportRead();
-    return super.tempoTrabalho;
+  int get workTime {
+    _$workTimeAtom.reportRead();
+    return super.workTime;
   }
 
   @override
-  set tempoTrabalho(int value) {
-    _$tempoTrabalhoAtom.reportWrite(value, super.tempoTrabalho, () {
-      super.tempoTrabalho = value;
+  set workTime(int value) {
+    _$workTimeAtom.reportWrite(value, super.workTime, () {
+      super.workTime = value;
     });
   }
 
-  final _$tempoDescansoAtom = Atom(name: '_PomodoroStore.tempoDescanso');
+  final _$restTimeAtom = Atom(name: '_PomodoroStore.restTime');
 
   @override
-  int get tempoDescanso {
-    _$tempoDescansoAtom.reportRead();
-    return super.tempoDescanso;
+  int get restTime {
+    _$restTimeAtom.reportRead();
+    return super.restTime;
   }
 
   @override
-  set tempoDescanso(int value) {
-    _$tempoDescansoAtom.reportWrite(value, super.tempoDescanso, () {
-      super.tempoDescanso = value;
+  set restTime(int value) {
+    _$restTimeAtom.reportWrite(value, super.restTime, () {
+      super.restTime = value;
     });
   }
 
-  final _$tipoIntervaloAtom = Atom(name: '_PomodoroStore.tipoIntervalo');
+  final _$breakTypeAtom = Atom(name: '_PomodoroStore.breakType');
 
   @override
-  TipoIntervalo get tipoIntervalo {
-    _$tipoIntervaloAtom.reportRead();
-    return super.tipoIntervalo;
+  BreakType get breakType {
+    _$breakTypeAtom.reportRead();
+    return super.breakType;
   }
 
   @override
-  set tipoIntervalo(TipoIntervalo value) {
-    _$tipoIntervaloAtom.reportWrite(value, super.tipoIntervalo, () {
-      super.tipoIntervalo = value;
+  set breakType(BreakType value) {
+    _$breakTypeAtom.reportWrite(value, super.breakType, () {
+      super.breakType = value;
     });
   }
 
@@ -103,77 +103,77 @@ mixin _$PomodoroStore on _PomodoroStore, Store {
       ActionController(name: '_PomodoroStore');
 
   @override
-  void iniciar() {
+  void start() {
     final _$actionInfo = _$_PomodoroStoreActionController.startAction(
-        name: '_PomodoroStore.iniciar');
+        name: '_PomodoroStore.start');
     try {
-      return super.iniciar();
+      return super.start();
     } finally {
       _$_PomodoroStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void parar() {
+  void stop() {
     final _$actionInfo = _$_PomodoroStoreActionController.startAction(
-        name: '_PomodoroStore.parar');
+        name: '_PomodoroStore.stop');
     try {
-      return super.parar();
+      return super.stop();
     } finally {
       _$_PomodoroStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void reiniciar() {
+  void restart() {
     final _$actionInfo = _$_PomodoroStoreActionController.startAction(
-        name: '_PomodoroStore.reiniciar');
+        name: '_PomodoroStore.restart');
     try {
-      return super.reiniciar();
+      return super.restart();
     } finally {
       _$_PomodoroStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void incrementarTempoTrabalho() {
+  void incrementWorkTime() {
     final _$actionInfo = _$_PomodoroStoreActionController.startAction(
-        name: '_PomodoroStore.incrementarTempoTrabalho');
+        name: '_PomodoroStore.incrementWorkTime');
     try {
-      return super.incrementarTempoTrabalho();
+      return super.incrementWorkTime();
     } finally {
       _$_PomodoroStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void decrementarTempoTrabalho() {
+  void decrementWorkTime() {
     final _$actionInfo = _$_PomodoroStoreActionController.startAction(
-        name: '_PomodoroStore.decrementarTempoTrabalho');
+        name: '_PomodoroStore.decrementWorkTime');
     try {
-      return super.decrementarTempoTrabalho();
+      return super.decrementWorkTime();
     } finally {
       _$_PomodoroStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void incrementarTempoDescanso() {
+  void incrementRestTime() {
     final _$actionInfo = _$_PomodoroStoreActionController.startAction(
-        name: '_PomodoroStore.incrementarTempoDescanso');
+        name: '_PomodoroStore.incrementRestTime');
     try {
-      return super.incrementarTempoDescanso();
+      return super.incrementRestTime();
     } finally {
       _$_PomodoroStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void decrementarTempoDescanso() {
+  void decrementRestTime() {
     final _$actionInfo = _$_PomodoroStoreActionController.startAction(
-        name: '_PomodoroStore.decrementarTempoDescanso');
+        name: '_PomodoroStore.decrementRestTime');
     try {
-      return super.decrementarTempoDescanso();
+      return super.decrementRestTime();
     } finally {
       _$_PomodoroStoreActionController.endAction(_$actionInfo);
     }
@@ -182,12 +182,12 @@ mixin _$PomodoroStore on _PomodoroStore, Store {
   @override
   String toString() {
     return '''
-iniciado: ${iniciado},
-minutos: ${minutos},
-segundos: ${segundos},
-tempoTrabalho: ${tempoTrabalho},
-tempoDescanso: ${tempoDescanso},
-tipoIntervalo: ${tipoIntervalo}
+started: ${started},
+minutes: ${minutes},
+seconds: ${seconds},
+workTime: ${workTime},
+restTime: ${restTime},
+breakType: ${breakType}
     ''';
   }
 }

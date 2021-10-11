@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:pomodoro_app/store/pomodoro.store.dart';
 import 'package:provider/provider.dart';
 
-class EntradaTempo extends StatelessWidget {
+class TimeInput extends StatelessWidget {
   final String titulo;
   final int valor;
   final void Function()? inc;
   final void Function()? dec;
 
-  const EntradaTempo({
+  const TimeInput({
     Key? key,
     required this.titulo,
     required this.valor,
@@ -42,7 +42,7 @@ class EntradaTempo extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 shape: const CircleBorder(),
                 padding: const EdgeInsets.all(15),
-                primary: store.estaTrabalhando() ? Colors.red : Colors.green,
+                primary: store.isWorking() ? Colors.red : Colors.green,
               ),
             ),
             Text(
@@ -60,7 +60,7 @@ class EntradaTempo extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 shape: const CircleBorder(),
                 padding: const EdgeInsets.all(15),
-                primary: store.estaTrabalhando() ? Colors.red : Colors.green,
+                primary: store.isWorking() ? Colors.red : Colors.green,
               ),
             ),
           ],
